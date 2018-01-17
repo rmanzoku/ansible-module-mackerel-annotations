@@ -7,9 +7,9 @@ from ansible.module_utils.urls import fetch_url
 
 DOCUMENTATION = """
 module: mackerel_annotations
-short_description: Send Mackerel annotations
+short_description: Create mackerel annotations
 description:
-    - The mackerel_annotations  module sends annotations to mackerel service and roles
+    - The mackerel_annotation  module creates annotations to mackerel service and roles
 author: "Ryo Manzoku(@rmanzoku)"
 options:
   api_key:
@@ -42,6 +42,29 @@ options:
       - Role name array (omit this field to register an annotation related to the service)
     required: False
     default: None
+"""
+
+EXAMPLES = """
+- name: Create annotations to service
+  mackerel_annotations:
+    api_key: mackerelapikey
+    title: test
+    description: Created by ansible
+    epoch_from: 1516160900
+    epoch_to: 1516160960
+    service: awesomeapp
+
+- name: Create annotations to roles
+  mackerel_annotations:
+    api_key: mackerelapikey
+    title: test
+    description: Created by ansible
+    epoch_from: 1516160900
+    epoch_to: 1516160960
+    service: awesomeapp
+    roles:
+      - app
+      - db
 """
 
 
