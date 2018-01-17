@@ -1,0 +1,1 @@
+# ansible-module-mackerel-annotations
