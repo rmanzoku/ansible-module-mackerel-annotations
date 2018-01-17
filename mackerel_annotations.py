@@ -1,10 +1,48 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-# def do_notify_
-
 from ansible.module_utils.basic import AnsibleModule
 from ansible.module_utils.urls import fetch_url
+
+
+DOCUMENTATION = """
+module: mackerel_annotations
+short_description: Send Mackerel annotations
+description:
+    - The mackerel_annotations  module sends annotations to mackerel service and roles
+author: "Ryo Manzoku(@rmanzoku)"
+options:
+  api_key:
+    description:
+      - Mackrel API key https://mackerel.io/my?tab=apikeys
+    required: True
+  title:
+    description:
+      - Annotation title
+    required: True
+  description:
+    description:
+      - Annotation details
+    required: False
+    default: None
+  epoch_from:
+    description:
+      - Starting time (epoch seconds)
+    required: True
+  epoch_to:
+    description:
+      - Ending time (epoch seconds)
+    required: True
+  service:
+    description:
+      - Service name
+    required: True
+  roles:
+    description:
+      - Role name array (omit this field to register an annotation related to the service)
+    required: False
+    default: None
+"""
 
 
 def build_payload(module, title, description, epoch_from, epoch_to, service, roles):
